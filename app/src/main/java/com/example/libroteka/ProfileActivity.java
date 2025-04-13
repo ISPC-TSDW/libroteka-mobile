@@ -16,6 +16,7 @@ import com.example.libroteka.data.MyApp;
 import com.example.libroteka.data.GetUserResponse;
 
 public class ProfileActivity extends AppCompatActivity {
+    private SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,8 @@ public class ProfileActivity extends AppCompatActivity {
         TextView userLastNameText = findViewById(R.id.userLastName);
         TextView userEmailText = findViewById(R.id.userEmail);
 
-        ApiManager apiManager = new ApiManager();
+        sessionManager = new SessionManager(this);
+        ApiManager apiManager = new ApiManager(sessionManager);
         apiManager.getUserByEmail(userEmail, new ApiManager.ApiCallback<GetUserResponse>() {
             @Override
             public void onSuccess(GetUserResponse response) {

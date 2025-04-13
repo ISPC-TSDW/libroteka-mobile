@@ -24,7 +24,7 @@ public class ProductoActivity extends AppCompatActivity {
     private String userId; // Set this with the current user ID
     private Integer bookId; // Store the book ID from Intent
     private ImageView imgBook; // Assuming you have an ImageView to display the book image
-
+    private SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +72,8 @@ public class ProductoActivity extends AppCompatActivity {
         }
 
         // Initialize the ApiManager
-        apiManager = new ApiManager();
+        sessionManager = new SessionManager(getApplicationContext());
+        apiManager = new ApiManager(sessionManager);
         getFavoriteStatus(); // Check if the book is already in favorites
 
         // Set up favorite button click listener

@@ -22,6 +22,7 @@ import java.util.List;
 public class Home extends AppCompatActivity {
 
     private RecyclerView rvDestacados;
+    private SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +93,8 @@ public class Home extends AppCompatActivity {
 
 
     private void getBooks() {
-        ApiManager apiManager = new ApiManager();
+        SessionManager sessionManager = new SessionManager(getApplicationContext());
+        ApiManager apiManager = new ApiManager(sessionManager);
         apiManager.getBooks(new ApiManager.ApiCallback<List<BookResponse>>() {
             @Override
             public void onSuccess(List<BookResponse> response) {
@@ -103,7 +105,6 @@ public class Home extends AppCompatActivity {
             @Override
             public void onFailure(String errorMessage) {
                 // Log the error or show a message to the user
-                Log.e("API Error", errorMessage);
             }
         });
     }

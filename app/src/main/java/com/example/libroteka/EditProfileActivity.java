@@ -32,13 +32,15 @@ public class EditProfileActivity extends AppCompatActivity {
     private EditText etEditarApellido;
     private EditText etEditarDNI;
     private EditText etEditarCorreo;
+    private SessionManager sessionManager;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-        apiManager = new ApiManager();
+        sessionManager = new SessionManager(getApplicationContext());
+        apiManager = new ApiManager(sessionManager);
         MyApp app = (MyApp) getApplicationContext();
         String userEmail = app.getUserEmail();
         // Inicializar los campos del formulario

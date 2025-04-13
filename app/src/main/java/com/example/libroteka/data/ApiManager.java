@@ -1,5 +1,6 @@
 package com.example.libroteka.data;
 
+import com.example.libroteka.SessionManager;
 import com.example.libroteka.retrofit.ApiInterface;
 import com.example.libroteka.retrofit.RetrofitClient;
 
@@ -11,10 +12,36 @@ import retrofit2.Response;
 
 public class ApiManager {
     private ApiInterface apiInterface;
+    private SessionManager sessionManager;
+    private MyApp app;
 
-    public ApiManager() {
-        apiInterface = RetrofitClient.getRetrofitInstance().create(ApiInterface.class);
+    public ApiManager(SessionManager sessionManager) {
+        this.sessionManager = sessionManager;
+        apiInterface = RetrofitClient.getRetrofitInstance(this.sessionManager).create(ApiInterface.class);
     }
+
+    // Método para refrescar el token
+//    private void refreshToken(final ApiCallback<Void> callback) {
+//        Call<TokenResponse> call = apiInterface.refreshToken(app.getRefreshToken());
+//
+//        call.enqueue(new Callback<TokenResponse>() {
+//            @Override
+//            public void onResponse(Call<TokenResponse> call, Response<TokenResponse> response) {
+//                if (response.isSuccessful() && response.body() != null) {
+//                    app.setAccessToken(response.body().getAccess());
+//                    app.setRefreshToken(response.body().getRefreshToken());
+//                    callback.onSuccess(null);
+//                } else {
+//                    callback.onFailure("Token refresh failed");
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<TokenResponse> call, Throwable t) {
+//                callback.onFailure("Token refresh failed: " + t.getMessage());
+//            }
+//        });
+//    }
 
 
     public void loginUser(LoginRequest loginRequest, final ApiCallback<UserResponse> callback) {
@@ -33,6 +60,26 @@ public class ApiManager {
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
                 callback.onFailure("Login fallido: " + t.getMessage());
+            }
+        });
+    }
+
+    public void getToken(TokenRequest tokenRequest, final ApiCallback<TokenResponse> callback) {
+        Call<TokenResponse> call = apiInterface.getToken(tokenRequest);
+// Call the getToken API
+        call.enqueue(new Callback<TokenResponse>() {
+
+            @Override
+            public void onResponse(Call<TokenResponse> call, Response<TokenResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    callback.onSuccess(response.body());
+                } else {
+                    callback.onFailure("Token fallido: " + response.message());
+                }
+            }
+            @Override
+            public void onFailure(Call<TokenResponse> call, Throwable t) {
+                callback.onFailure("Token fallido: " + t.getMessage());
             }
         });
     }

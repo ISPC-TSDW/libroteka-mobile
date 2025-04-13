@@ -23,6 +23,7 @@ public class FavoritosActivity extends AppCompatActivity implements FavoritesAda
     private ApiManager apiManager;
     private String userId;
     private List<FavoriteRequest> favoritesList; // Store the favorites list
+    private SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +32,8 @@ public class FavoritosActivity extends AppCompatActivity implements FavoritesAda
 
         recyclerViewFavorites = findViewById(R.id.recyclerViewFavorites);
         recyclerViewFavorites.setLayoutManager(new GridLayoutManager(this, 2));
-
-        apiManager = new ApiManager();
+        sessionManager = new SessionManager(getApplicationContext());
+        apiManager = new ApiManager(sessionManager);
         MyApp app = (MyApp) getApplicationContext();
         userId = app.getUserEmail();  // Assume userId is the email
 
