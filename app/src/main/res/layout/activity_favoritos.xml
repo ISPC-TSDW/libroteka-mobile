@@ -47,8 +47,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        app:itemIconTint="@color/brownstone"
-        app:itemTextColor="@color/brownstone"
+        app:itemIconTint="@color/greyviolet"
+        app:itemTextColor="@color/greyviolet"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/menu_navigation"/>
 

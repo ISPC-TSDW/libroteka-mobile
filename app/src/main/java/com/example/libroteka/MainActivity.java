@@ -2,7 +2,6 @@ package com.example.libroteka;
 
 import android.content.Intent;
 import android.os.Bundle;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -56,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        Button editProfileButton = findViewById(R.id.editProfileButton);
+        Button editProfileButton = findViewById(R.id.editProfile);
         editProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         ContentMainBinding contentMainBinding = ContentMainBinding.bind(findViewById(R.id.nav_host_fragment_content_main));
 
 
-        Button editProfileButton = findViewById(R.id.editProfileButton);
+        Button editProfileButton = findViewById(R.id.editProfile);
         editProfileButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, EditProfileActivity.class);
             startActivity(intent);

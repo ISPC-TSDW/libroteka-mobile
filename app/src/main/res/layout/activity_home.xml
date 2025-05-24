@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/marble"
+    android:background="@color/white"
     tools:context=".Home">
 
 
     <ImageView
         android:id="@+id/profileIcon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="58dp"
+        android:layout_height="50dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
+        android:contentDescription="@string/profile_icon"
         android:src="@drawable/ic_profile"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:contentDescription="@string/profile_icon"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView4"
@@ -44,8 +43,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="76dp"
         android:text="@string/categor_as"
-        android:textColor="@color/brownstone"
-        android:textSize="18sp"
+        android:textColor="@color/greyviolet"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/profileIcon" />
@@ -56,13 +55,13 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginTop="8dp"
+        android:orientation="horizontal"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        app:layout_constraintTop_toBottomOf="@id/tvCategorias"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:listitem="@layout/item_categoria"
-        android:orientation="horizontal"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCategorias"
+        tools:listitem="@layout/item_categoria" />
 
     <!-- Título "Destacados" -->
 
@@ -74,9 +73,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:text="@string/destacados"
-        android:textColor="@color/brownstone"
-        android:textSize="18sp"
+        android:text="@string/Libros"
+        android:textColor="@color/greyviolet"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/rvCategorias" />
@@ -85,13 +84,13 @@
         android:id="@+id/rvDestacados"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        app:layout_constraintTop_toBottomOf="@id/tvDestacados"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:listitem="@layout/item_destacado"
-        android:orientation="horizontal"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDestacados"
+        tools:listitem="@layout/item_destacado" />
 
     <!-- Barra de navegación inferior -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -99,9 +98,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        app:itemIconTint="@color/brownstone"
-        app:itemTextColor="@color/brownstone"
+        app:itemIconTint="@color/greyviolet"
+        app:itemTextColor="@color/greyviolet"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/menu_navigation"/>
+        app:menu="@menu/menu_navigation" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
