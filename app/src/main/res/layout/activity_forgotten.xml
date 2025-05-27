@@ -5,20 +5,20 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/marble"
+    android:background="@color/white"
     tools:context=".Main_forgotten">
 
     <ImageView
-        android:contentDescription="@string/recuperar_contrase_a"
         android:id="@+id/id_logo1"
         android:layout_width="196dp"
         android:layout_height="192dp"
         android:layout_marginTop="84dp"
+        android:contentDescription="@string/recuperar_contrase_a"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_login"/>
+        app:srcCompat="@drawable/icon_login" />
 
     <TextView
         android:id="@+id/textView"
@@ -35,11 +35,11 @@
         app:layout_constraintTop_toBottomOf="@+id/id_logo1" />
 
     <EditText
-        android:autofillHints="emailAddress"
         android:id="@+id/et_mail"
         android:layout_width="311dp"
         android:layout_height="58dp"
         android:layout_marginTop="36dp"
+        android:autofillHints="emailAddress"
         android:ems="10"
         android:fontFamily="@font/roboto"
         android:gravity="center_vertical"
@@ -61,6 +61,7 @@
         android:background="@drawable/button_rounded"
         android:fontFamily="@font/roboto"
         android:gravity="center"
+        android:onClick="onRecoverClick"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:text="@string/texto3"
@@ -69,14 +70,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_mail"
-        android:onClick="onRecoverClick"/>
+        app:layout_constraintTop_toBottomOf="@+id/et_mail" />
 
     <Button
         android:id="@+id/back"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="52dp"
         android:background="@drawable/button_rounded"
         android:fontFamily="@font/roboto"
         android:gravity="center"

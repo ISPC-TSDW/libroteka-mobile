@@ -24,7 +24,7 @@ public class HistorialComprasActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.rvHistorial);
         tvTotalPedidos = findViewById(R.id.tvTotalPedidos);
 
-        //compras = getComprasEjemplo();
+        compras = getComprasEjemplo();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new Compraadapter(this, compras));
@@ -32,14 +32,15 @@ public class HistorialComprasActivity extends AppCompatActivity {
         tvTotalPedidos.setText("Total de pedidos: " + compras.size());
     }
 
-   //private List<Compra> getComprasEjemplo() {
-    //    return Arrays.asList(
-    //            new Compra("PAID", Arrays.asList(new Libro("El Principito", "drama", "Edición especial"),
-    //                    new Libro("1984", "Suspenso", "Tapa dura")
-    //            )),
-    //            new Compra("SENT", Arrays.asList(
-    //                    new Libro("Cien años de soledad", "Accion", "Bolsillo")
-    //            ))
-    //    );
-    };
+    private List<Compra> getComprasEjemplo() {
+        return Arrays.asList(
+                new Compra("PAID", Arrays.asList(new Libro("El Principito", "drama", 1),
+                        new Libro("1984", "Suspenso", 2)
+                )),
+                new Compra("SENT", Arrays.asList(
+                        new Libro("Cien años de soledad", "Accion", 3)
+                ))
+        );
+    }
+}
 

@@ -1,30 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="12dp"
-    android:background="#EEEEEE"
-    android:layout_marginBottom="8dp">
-
-    <TextView
-        android:id="@+id/tvEstadoCompra"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Estado: PENDING"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:id="@+id/tvTotalLibros"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Libros comprados: 0"
-        android:layout_marginTop="4dp" />
+    android:layout_height="match_parent"
+    android:background="@color/grey"
+    android:padding="50dp">
 
     <LinearLayout
         android:id="@+id/layoutLibros"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/grey"
         android:orientation="vertical"
-        android:layout_marginTop="6dp"/>
-</LinearLayout>
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="89dp">
+
+        <TextView
+            android:id="@+id/tvEstadoCompra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Estado: PENDING"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvTotalLibros"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Libros comprados: 0"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
