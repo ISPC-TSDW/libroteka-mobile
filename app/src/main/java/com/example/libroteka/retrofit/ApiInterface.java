@@ -3,6 +3,7 @@ package com.example.libroteka.retrofit;
 import retrofit2.Call;
 import retrofit2.http.Body;
 
+import com.example.libroteka.data.Author;
 import com.example.libroteka.data.DeleteProfileRequest;
 import com.example.libroteka.data.DeleteResponse;
 import com.example.libroteka.data.GetUserResponse;
@@ -75,4 +76,8 @@ public interface ApiInterface {
 
     @POST("/token/refresh/")
     Call<TokenResponse> refreshToken(@Body String refreshToken);
+
+    @GET("api/authors/")
+    Call<List<Author>> getAuthors();
+
 }
