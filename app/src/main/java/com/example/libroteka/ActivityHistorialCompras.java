@@ -14,7 +14,7 @@ public class ActivityHistorialCompras extends AppCompatActivity {
     private RecyclerView recyclerView;
     private OrderAdapter adapter;
     private ApiService apiService;
-    private static final String BASE_URL = "http://127.0.0.1:8000/api/";      //"https://tuservidor.com/api/"; // Ajusta tu URL base
+    private static final String BASE_URL = "http://127.0.0.1:8000/api/orders/";      //"https://tuservidor.com/api/"; // Ajusta tu URL base
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
