@@ -124,11 +124,13 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Navigate to the EditProfileActivity
-                Intent intent = new Intent(ProfileActivity.this, HistorialComprasActivity.class);
+                Intent intent = new Intent(ProfileActivity.this, ActivityHistorialCompras.class);
                 startActivity(intent);
-            };
+            }
+
+            ;
         });
 
-    }
+        }
 
 }

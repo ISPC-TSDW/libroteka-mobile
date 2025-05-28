@@ -82,9 +82,9 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvDestacados"
-        android:layout_width="match_parent"
+        android:layout_width="411dp"
+        android:layout_height="197dp"
         android:orientation="horizontal"
-        android:layout_height="180dp"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
