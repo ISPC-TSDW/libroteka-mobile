@@ -13,8 +13,8 @@ public class Libro {
         this.titulo = titulo;
         this.imagenResId = imagenResId;
         this.categoria = categoria;
-        this.detalle = detalle;
-        this.precio = precio;
+        //this.detalle = detalle;
+        //this.precio = precio;
     }
 
     // Getters
