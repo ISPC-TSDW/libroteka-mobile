@@ -1,5 +1,7 @@
 package com.example.libroteka.data;
 
+import android.content.Context;
+
 import com.example.libroteka.SessionManager;
 import com.example.libroteka.retrofit.ApiInterface;
 import com.example.libroteka.retrofit.RetrofitClient;
@@ -15,10 +17,14 @@ public class ApiManager {
     private SessionManager sessionManager;
     private MyApp app;
 
+    public ApiManager(Context context) {
+        this.sessionManager = new SessionManager(context);
+        this.apiInterface = RetrofitClient.getRetrofitInstance(sessionManager).create(ApiInterface.class);
+        this.app = (MyApp) context.getApplicationContext();
+    }
     public ApiManager(SessionManager sessionManager) {
         this.sessionManager = sessionManager;
-        apiInterface = RetrofitClient.getRetrofitInstance(this.sessionManager).create(ApiInterface.class);
-    }
+        apiInterface = RetrofitClient.getRetrofitInstance(sessionManager).create(ApiInterface.class);    }
 
     // Método para refrescar el token
 //    private void refreshToken(final ApiCallback<Void> callback) {
@@ -51,6 +57,7 @@ public class ApiManager {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
+                    app.setUserEmail(loginRequest.getEmail());
                     callback.onSuccess(response.body());
                 } else {
                     callback.onFailure("Login fallido: " + response.message());
