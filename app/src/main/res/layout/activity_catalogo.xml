@@ -1,12 +1,10 @@
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/marble"
+    android:background="@color/white"
     tools:context=".Catalogo">
-
 
 
     <!-- Icono de volver atrás -->
@@ -20,16 +18,16 @@
         android:src="@drawable/ic_arrow_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/brownstone" />
+        app:tint="@color/greyviolet" />
 
     <!-- Icono de perfil -->
     <ImageView
         android:id="@+id/icon_profile"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:contentDescription="@string/perfil"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="25dp"
+        android:contentDescription="@string/perfil"
         android:src="@drawable/ic_profile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -66,7 +64,7 @@
         android:src="@drawable/filtrar1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/brownstone" />
+        app:tint="@color/greyviolet" />
 
     <!-- RecyclerView para los libros -->
     <androidx.recyclerview.widget.RecyclerView
@@ -88,12 +86,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        app:itemIconTint="@color/brownstone"
-        app:itemTextColor="@color/brownstone"
-        app:menu="@menu/menu_navigation"
-
+        app:itemIconTint="@color/greyviolet"
+        app:itemTextColor="@color/greyviolet"
         app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:menu="@menu/menu_navigation" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

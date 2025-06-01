@@ -27,7 +27,8 @@ public class ProfileActivity extends AppCompatActivity {
 
 
         // Initialize views
-        Button editProfileButton = findViewById(R.id.editProfileButton);
+        Button editProfileButton = findViewById(R.id.editProfile);
+        Button ordenescompra = findViewById(R.id.ordenescompra);
         Button contactUsButton = findViewById(R.id.contactUsButton);
         Button faqButton = findViewById(R.id.faqButton);
         Button logoutButton = findViewById(R.id.logoutButton);
@@ -64,6 +65,8 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
 
         contactUsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,7 +120,17 @@ public class ProfileActivity extends AppCompatActivity {
             }
 
         });
+        ordenescompra.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to the EditProfileActivity
+                Intent intent = new Intent(ProfileActivity.this, ActivityHistorialCompras.class);
+                startActivity(intent);
+            }
 
-    }
+            ;
+        });
+
+        }
 
 }
