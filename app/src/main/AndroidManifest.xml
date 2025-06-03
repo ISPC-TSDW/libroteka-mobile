@@ -14,6 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round3"
         android:supportsRtl="true"
         android:theme="@style/SplashTheme"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
         <!-- SplashActivity como la actividad de inicio -->
@@ -23,48 +24,21 @@
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".FaqActivity"
             android:exported="false" />
         <activity
             android:name=".FavoritosActivity"
             android:exported="false" />
-        <activity
-            android:name=".Popup_verJackD"
-            android:exported="false"
-            android:theme="@style/AppTheme.TemaPopup" />
+
         <activity
             android:name=".ProductoActivity"
             android:exported="false" />
-        <activity
-            android:name=".Popup_verTerapia"
-            android:exported="false"
-            android:theme="@style/AppTheme.TemaPopup" />
-        <activity
-            android:name=".Producto_Terapia"
-            android:exported="false" />
-        <activity
-            android:name=".Popup_verVisitante"
-            android:exported="false"
-            android:theme="@style/AppTheme.TemaPopup" />
-        <activity
-            android:name=".Producto_El_Visitante"
-            android:exported="false" />
-        <activity
-            android:name=".Popup_verInstituto"
-            android:exported="false"
-            android:theme="@style/AppTheme.TemaPopup" />
-        <activity
-            android:name=".Producto_El_Instituto"
-            android:exported="false" />
-        <activity
-            android:name=".Popup_verFauno"
-            android:exported="false"
-            android:theme="@style/AppTheme.TemaPopup" />
+
         <activity
             android:name=".Home"
             android:exported="false" />
@@ -90,22 +64,18 @@
             android:name=".ContactActivity"
             android:exported="false" />
         <activity
-            android:name=".Login"
-            android:exported="false" />
-        <activity
-            android:name=".ui.login.LoginActivity"
-            android:exported="false"
-            android:label="@string/title_activity_login" />
-        <activity
             android:name=".Catalogo"
             android:exported="false" />
-        <activity
+        <!--<activity
             android:name=".Categoria"
-            android:exported="false" />
+            android:exported="false" />-->
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat" />
+        <activity
+            android:name=".HistorialComprasActivity"
+            android:exported="false"             />
 
         <meta-data
             android:name="preloaded_fonts"

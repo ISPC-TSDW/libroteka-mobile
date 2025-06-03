@@ -111,6 +111,25 @@ public class ApiManager {
         });
     }
 
+    public void getAuthors(ApiCallback<List<Author>> callback) {
+        apiInterface.getAuthors().enqueue(new Callback<List<Author>>() {
+            @Override
+            public void onResponse(Call<List<Author>> call, Response<List<Author>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    callback.onSuccess(response.body());
+                } else {
+                    callback.onFailure("No se pudieron obtener los autores.");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Author>> call, Throwable t) {
+                callback.onFailure(t.getMessage());
+            }
+        });
+    }
+
+
     public void registerUser(RegisterRequest registerRequest, final ApiCallback<RegisterResponse> callback) {
         // Make the call to the register API
         Call<RegisterResponse> call = apiInterface.registerUser(registerRequest);

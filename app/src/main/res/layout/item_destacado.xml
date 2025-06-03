@@ -2,7 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/marble"
+    android:background="@color/white"
     android:elevation="4dp"
     android:padding="8dp">
 
@@ -30,24 +30,25 @@
     <!-- Título del libro -->
     <TextView
         android:id="@+id/tvTituloLibro"
+        android:layout_width="97dp"
+        android:layout_height="17dp"
         android:fontFamily="@font/roboto"
         android:gravity="center|start"
         android:text="@string/t_tulo_del_libro"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:textColor="@color/bark"
+        android:textColor="@color/greyviolet"
         android:textSize="13sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgLibro" />
 
     <!-- Precio del libro -->
+
     <TextView
         android:id="@+id/tvPrecioLibro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/_15_000"
-        android:textColor="@color/bark"
+        android:textColor="@color/greyviolet"
         app:layout_constraintStart_toStartOf="@+id/tvTituloLibro"
         app:layout_constraintTop_toBottomOf="@id/tvTituloLibro" />
 

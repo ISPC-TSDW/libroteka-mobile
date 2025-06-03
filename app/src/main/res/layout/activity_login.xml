@@ -5,37 +5,33 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/marble"
-    android:onClick="crearCuenta"
+    android:background="@color/white"
     tools:context=".main_login">
+
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="56dp"
+        android:layout_marginTop="48dp"
         android:fontFamily="@font/lobster"
         android:text="@string/app_name"
         android:textColor="@color/black"
         android:textSize="80sp"
-        app:layout_constraintBottom_toTopOf="@+id/img_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.945" />
-
-
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/img_login"
         android:layout_width="300dp"
         android:layout_height="250dp"
+        android:layout_marginTop="56dp"
         android:contentDescription="@string/logo_libroteka"
-        app:layout_constraintBottom_toTopOf="@+id/btn_login"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.755"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:srcCompat="@drawable/libromain3" />
 
     <Button
@@ -43,21 +39,20 @@
         android:layout_width="227dp"
         android:layout_height="59dp"
         android:layout_marginStart="40dp"
+        android:layout_marginTop="92dp"
         android:layout_marginEnd="40dp"
-        android:layout_marginBottom="6dp"
         android:background="@drawable/button_rounded"
-        android:backgroundTint="@color/brownstone"
         android:fontFamily="@font/roboto"
         android:gravity="center"
         android:onClick="inicio"
         android:text="@string/title_activity_login"
         android:textColor="@color/marble"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_registrer"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_login" />
 
     <Button
         android:id="@+id/btn_registrer"
@@ -66,9 +61,8 @@
         android:layout_height="59dp"
         android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
-        android:layout_marginBottom="150dp"
-        android:fontFamily="@font/roboto"
         android:background="@drawable/button_rounded"
+        android:fontFamily="@font/roboto"
         android:gravity="center"
         android:onClick="registro"
         android:text="@string/action_sign_in"
@@ -76,7 +70,9 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

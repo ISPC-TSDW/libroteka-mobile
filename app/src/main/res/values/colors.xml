@@ -9,9 +9,11 @@
     <color name="light">#F8D1BF</color>
     <color name="brownstone">#7D5642</color>
     <color name="beige">#A88374</color>
-
+    <color name="violet">#a78bfa</color>
     <color name="bottom_nav_icon_color">#FF0000</color>
     <color name="bottom_nav_text_color">#FFFFFF</color>
+    <color name="delete">#A742FA</color>
+    <color name="greyviolet">#625D73</color>
 
 
 </resources>

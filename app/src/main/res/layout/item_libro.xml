@@ -31,8 +31,8 @@
     <!-- Título del libro -->
     <TextView
         android:id="@+id/tvTituloLibro"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
         android:fontFamily="@font/roboto"
         android:gravity="center|start"
         android:text="@string/t_tulo_del_libro"
@@ -43,6 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imgLibro" />
 
     <!-- Precio del libro -->
+    <!--
     <TextView
         android:id="@+id/tvPrecioLibro"
         android:layout_width="wrap_content"
@@ -51,6 +52,6 @@
         android:textColor="@color/bark"
         app:layout_constraintStart_toStartOf="@+id/tvTituloLibro"
         app:layout_constraintTop_toBottomOf="@id/tvTituloLibro" />
-
+    -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

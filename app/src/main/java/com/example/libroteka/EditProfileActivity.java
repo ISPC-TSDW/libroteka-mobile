@@ -63,7 +63,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 etEditarApellido.setText(userLastName);
                 etEditarDNI.setText(String.valueOf(userDni)); // Convert Integer to String
                 etEditarCorreo.setText(userEmail);
-                etEditarCorreo.setText(userEmail);
+                //etEditarCorreo.setText(userEmail);
             }
 
             public void onFailure(String errorMessage) {
