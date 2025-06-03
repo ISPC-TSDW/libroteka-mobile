@@ -1,7 +1,9 @@
 package com.example.libroteka;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,6 +26,8 @@ public class ProductoActivity extends AppCompatActivity {
     private String userId;
     private Integer bookId;
     private SessionManager sessionManager;
+    private Button webButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +40,7 @@ public class ProductoActivity extends AppCompatActivity {
         txtDescription = findViewById(R.id.txtDescription);
         imgBook = findViewById(R.id.srcImg);
         ImageButton btnFavorite = findViewById(R.id.btnFavorite);
-
+        webButton = findViewById(R.id.webButton);
         // Obtener email de sesión
         MyApp app = (MyApp) getApplicationContext();
         userId = app.getUserEmail();
@@ -76,7 +80,20 @@ public class ProductoActivity extends AppCompatActivity {
 
         // Toggle favorito
         btnFavorite.setOnClickListener(v -> toggleFavorite());
+
+        webButton.setOnClickListener(v -> {
+            try {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL));
+                startActivity(browserIntent);
+            } catch (Exception e) {
+                Toast.makeText(ProductoActivity.this, "No se pudo abrir el enlace", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
+
+    public static final String URL = "https://libroteka-frontend-prod.onrender.com/";
+
 
     private void getFavoriteStatus() {
         apiManager.getFavoriteStatus(userId, bookId, new ApiManager.ApiCallback<Boolean>() {
