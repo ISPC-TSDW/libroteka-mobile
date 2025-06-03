@@ -31,7 +31,9 @@ public class SessionManager {
 
     private static final String IS_LOGIN = "IsLoggedIn";
 
-
+    public Context getContext() {
+        return _context;
+    }
 
     /** Email address (make variable public to access from outside)*/
 

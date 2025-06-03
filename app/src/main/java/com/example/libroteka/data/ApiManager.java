@@ -18,14 +18,12 @@ public class ApiManager {
     private SessionManager sessionManager;
     private MyApp app;
 
-    public ApiManager(Context context) {
-        this.sessionManager = new SessionManager(context);
-        this.apiInterface = RetrofitClient.getRetrofitInstance(sessionManager).create(ApiInterface.class);
-        this.app = (MyApp) context.getApplicationContext();
-    }
     public ApiManager(SessionManager sessionManager) {
         this.sessionManager = sessionManager;
-        apiInterface = RetrofitClient.getRetrofitInstance(sessionManager).create(ApiInterface.class);    }
+        this.apiInterface = RetrofitClient.getRetrofitInstance(sessionManager).create(ApiInterface.class);
+        // Initialize app using the context from SessionManager
+        this.app = (MyApp) sessionManager.getContext().getApplicationContext();
+    }
 
     // Método para refrescar el token
 //    private void refreshToken(final ApiCallback<Void> callback) {
@@ -283,7 +281,7 @@ public class ApiManager {
     // Método para obtener el usuario por email
     public void getUserByEmail(String email, final ApiCallback<GetUserResponse> callback) {
         Call<GetUserResponse> call = apiInterface.getUserByEmail(email);
-
+        Log.i("EMAIL en getuserbyemail", email);
         call.enqueue(new Callback<GetUserResponse>() {
             @Override
             public void onResponse(Call<GetUserResponse> call, Response<GetUserResponse> response) {
