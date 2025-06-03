@@ -15,6 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
     private static Retrofit retrofit;
+
     private static final String BASE_URL = "http://10.0.2.2:8000/";
     //"https://libroback.koyeb.app/"; //"https://libroteka-app.onrender.com/";
     private static String authToken;
@@ -24,7 +25,7 @@ public class RetrofitClient {
         authToken = token;
         retrofit = null; // Reset retrofit para que se reinicialice con el nuevo token
     }
-//Superusuario12!
+    //Superusuario12!
     public static Retrofit getRetrofitInstance(SessionManager sessionManager) {
 
         // Create a logging interceptor for monitoring requests and responses
@@ -59,3 +60,4 @@ public class RetrofitClient {
         return retrofit;
     }
 }
+
