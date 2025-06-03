@@ -15,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
     private static Retrofit retrofit;
-    private static final String BASE_URL = "https://libroback.koyeb.app/";
+    private static final String BASE_URL = "https://libroteka-app.onrender.com/";
     //"https://libroback.koyeb.app/"; //"https://libroteka-app.onrender.com/";
     private static String authToken;
 

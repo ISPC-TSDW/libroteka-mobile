@@ -57,9 +57,10 @@ public class ApiManager {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    app.setUserEmail(response.body().getEmail());
+                    //
+                    Log.i("responseBODY", String.valueOf(loginRequest.getEmail()));
                     callback.onSuccess(response.body());
-
+                    app.setUserEmail(String.valueOf(loginRequest.getEmail()));
                 } else {
                     callback.onFailure("Login fallido: " + response.message());
                 }
