@@ -1,6 +1,7 @@
 package com.example.libroteka.data;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.libroteka.SessionManager;
 import com.example.libroteka.retrofit.ApiInterface;
@@ -52,13 +53,13 @@ public class ApiManager {
 
     public void loginUser(LoginRequest loginRequest, final ApiCallback<UserResponse> callback) {
         Call<UserResponse> call = apiInterface.loginUser(loginRequest);
-
         call.enqueue(new Callback<UserResponse>() {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    app.setUserEmail(loginRequest.getEmail());
+                    app.setUserEmail(response.body().getEmail());
                     callback.onSuccess(response.body());
+
                 } else {
                     callback.onFailure("Login fallido: " + response.message());
                 }
