@@ -85,4 +85,8 @@ public class BookResponse {
     public Integer getYear() {
         return year;
     }
+
+    public Integer getId() {
+        return id_Book;
+    }
 }
