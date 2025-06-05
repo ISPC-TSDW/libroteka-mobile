@@ -74,8 +74,9 @@
             android:exported="true"
             android:theme="@style/Theme.AppCompat" />
         <activity
-            android:name=".HistorialComprasActivity"
-            android:exported="false"             />
+            android:name=".ActivityHistorialCompras"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat" />
 
         <meta-data
             android:name="preloaded_fonts"
