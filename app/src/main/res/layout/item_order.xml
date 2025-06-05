@@ -23,11 +23,18 @@
         android:textSize="20sp"
         android:textStyle="bold"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content" />    <TextView
+    android:id="@+id/tvTotal"
+    android:text="Total: $0.00"
+    android:textColor="@color/greyviolet"
+    android:textSize="20sp"
+    android:textStyle="bold"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/tvTotal"
-        android:text="Total: $0.00"
+        android:id="@+id/tvStatus"
+        android:text="Estado: Pendiente"
         android:textColor="@color/greyviolet"
         android:textSize="20sp"
         android:textStyle="bold"
