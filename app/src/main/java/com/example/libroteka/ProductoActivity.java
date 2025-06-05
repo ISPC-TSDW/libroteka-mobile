@@ -43,7 +43,7 @@ public class ProductoActivity extends AppCompatActivity {
         webButton = findViewById(R.id.webButton);
         // Obtener email de sesión
         MyApp app = (MyApp) getApplicationContext();
-        userId = app.getUserEmail();
+        userId = app.getUserId();
 
         // Obtener datos del intent
         Intent intent = getIntent();

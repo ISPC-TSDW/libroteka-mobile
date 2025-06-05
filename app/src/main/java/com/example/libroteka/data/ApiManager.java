@@ -55,10 +55,9 @@ public class ApiManager {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    //
-                    Log.i("responseBODY", String.valueOf(loginRequest.getEmail()));
                     callback.onSuccess(response.body());
                     app.setUserEmail(String.valueOf(loginRequest.getEmail()));
+                    app.setUserId(response.body().getUserId());
                 } else {
                     callback.onFailure("Login fallido: " + response.message());
                 }
@@ -203,7 +202,7 @@ public class ApiManager {
     public void toggleFavorite(String userId, Integer bookId, final ApiCallback<Void> callback) {
         FavoriteRequest favoriteRequest = new FavoriteRequest(userId, bookId);
         Call<Void> call = apiInterface.toggleFavorite(favoriteRequest);
-
+        Log.i("AVER", favoriteRequest.toString());
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

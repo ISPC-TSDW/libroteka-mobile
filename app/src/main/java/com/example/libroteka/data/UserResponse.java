@@ -8,7 +8,7 @@ public class UserResponse {
     public String getMessage() {
         return message;
     }
-
+    public String getUserId() {return  user.getId();}
     public String getEmail() {
         return user.getEmail();
     }

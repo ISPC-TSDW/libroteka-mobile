@@ -35,7 +35,7 @@ public class FavoritosActivity extends AppCompatActivity implements FavoritesAda
         sessionManager = new SessionManager(getApplicationContext());
         apiManager = new ApiManager(sessionManager);
         MyApp app = (MyApp) getApplicationContext();
-        userId = app.getUserEmail();  // Assume userId is the email
+        userId = app.getUserId();
 
         // Fetch the favorites
         fetchFavorites(userId);
