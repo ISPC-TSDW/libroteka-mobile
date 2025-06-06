@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/marble"
+    android:background="@color/white"
     tools:context=".Main_login2">
 
     <!-- Title -->
@@ -25,48 +25,52 @@
         app:layout_constraintWidth_default="wrap" />
 
     <!-- Email Input -->
+
+    <!-- Password Input -->
+
+
     <EditText
-        android:autofillHints="emailAddress"
         android:id="@+id/et_email"
         android:layout_width="282dp"
         android:layout_height="54dp"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="72dp"
+        android:autofillHints="emailAddress"
         android:background="@drawable/formtext"
         android:fontFamily="@font/roboto"
         android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
         android:padding="16dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         android:textSize="15sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView2"
         app:layout_constraintWidth_default="wrap" />
-
-    <!-- Password Input -->
-
 
     <EditText
         android:id="@+id/et_pass"
         android:layout_width="283dp"
         android:layout_height="51dp"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="52dp"
         android:autofillHints="password"
         android:background="@drawable/formtext"
         android:fontFamily="@font/roboto"
         android:hint="@string/prompt_password"
         android:inputType="textPassword"
         android:padding="16dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         android:textSize="15sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/btn_toggle_password"
-        app:layout_constraintHorizontal_bias="0.566"
+        app:layout_constraintHorizontal_bias="0.57"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_email"
+        app:layout_constraintTop_toBottomOf="@+id/et_email"
         app:layout_constraintWidth_default="wrap" />
 
     <ImageButton
@@ -75,17 +79,23 @@
         android:layout_height="40dp"
         android:background="@android:color/transparent"
         android:src="@drawable/ic_visibility_off"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="14dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/et_pass"
         app:layout_constraintBottom_toBottomOf="@id/et_pass" />
 
     <!-- Login Button -->
+
+    <!-- Back Button -->
+
+    <!-- Forgot Password Text -->
+
     <Button
         android:id="@+id/button"
-        android:layout_width="235dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="215dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="84dp"
         android:background="@drawable/button_rounded"
         android:fontFamily="@font/roboto"
         android:gravity="center"
@@ -93,16 +103,16 @@
         android:text="@string/title_activity_login"
         android:textColor="@color/marble"
         android:textSize="15sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_pass" />
+        app:layout_constraintTop_toBottomOf="@+id/et_pass" />
 
-    <!-- Back Button -->
     <Button
         android:id="@+id/back"
         android:layout_width="215dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="36dp"
         android:background="@drawable/button_rounded"
         android:fontFamily="@font/roboto"
         android:gravity="center"
@@ -110,24 +120,24 @@
         android:text="@string/volver"
         android:textColor="@color/marble"
         android:textSize="15sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 
-    <!-- Forgot Password Text -->
     <TextView
         android:id="@+id/tvOlvidasteContrasena"
         android:layout_width="279dp"
         android:layout_height="52dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="84dp"
         android:gravity="center"
         android:onClick="recuperarContraseña"
         android:text="@string/forgotten"
         android:textColor="@color/bark"
         android:textSize="15sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/back" />
+        app:layout_constraintTop_toBottomOf="@+id/back" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

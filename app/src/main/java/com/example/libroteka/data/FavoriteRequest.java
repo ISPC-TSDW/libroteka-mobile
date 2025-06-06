@@ -11,9 +11,9 @@ public class FavoriteRequest {
             this.id = id;
         }
 
-    public Integer getId_book() {
-            return id_book;
-    }
     public Integer getId() {return id;}
 
+    public Integer getIdBook() {
+            return id_book;
+    }
 }

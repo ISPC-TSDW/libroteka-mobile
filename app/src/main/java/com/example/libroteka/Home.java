@@ -6,6 +6,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import java.util.Map;
+import java.util.HashMap;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +16,7 @@ import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.SnapHelper;
 
 import com.example.libroteka.data.ApiManager;
+import com.example.libroteka.data.Author;
 import com.example.libroteka.data.BookResponse;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -23,12 +27,13 @@ public class Home extends AppCompatActivity {
 
     private RecyclerView rvDestacados;
     private SessionManager sessionManager;
+    private Map<Integer, String> authorMap = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        getBooks();
+        getAuthors();
         // Icono del perfil y listener para navegar a ProfileActivity
         ImageView profileImageView = findViewById(R.id.profileIcon);
         profileImageView.setOnClickListener(new View.OnClickListener() {
@@ -44,7 +49,6 @@ public class Home extends AppCompatActivity {
         listaCategorias.add(new Categoria("Aventura", R.drawable.aventura));
         listaCategorias.add(new Categoria("Fantasía", R.drawable.fantasia));
 
-
         // Inicializamos RecyclerView y BottomNavigationView
         RecyclerView rvCategorias = findViewById(R.id.rvCategorias);
         rvDestacados = findViewById(R.id.rvDestacados);
@@ -55,7 +59,7 @@ public class Home extends AppCompatActivity {
         CategoriasAdapter categoriasAdapter = new CategoriasAdapter(listaCategorias, new CategoriasAdapter.OnCategoriaClickListener() {
             @Override
             public void onCategoriaClick(Categoria categoria) {
-                // Acción cuando se selecciona una categoría (mostrar libros relacionados)
+                // Acción cuando se selecciona una categoría
                 goToCategories();
             }
         });
@@ -67,7 +71,7 @@ public class Home extends AppCompatActivity {
 
         // Configuramos el RecyclerView horizontal para libros destacados
         rvDestacados.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-//        rvDestacados.setAdapter(new LibrosAdapter(listaLibros));
+        //rvDestacados.setAdapter(new LibrosAdapter(listaLibros));
 
         // Menú de navegación inferior
         bottomNavigationView.setOnItemSelectedListener(item -> {
@@ -91,7 +95,6 @@ public class Home extends AppCompatActivity {
         startActivity(intent);
     }
 
-
     private void getBooks() {
         SessionManager sessionManager = new SessionManager(getApplicationContext());
         ApiManager apiManager = new ApiManager(sessionManager);
@@ -108,17 +111,36 @@ public class Home extends AppCompatActivity {
             }
         });
     }
+
+    private void getAuthors() {
+        ApiManager apiManager = new ApiManager(new SessionManager(getApplicationContext()));
+        apiManager.getAuthors(new ApiManager.ApiCallback<List<Author>>() {
+            @Override
+            public void onSuccess(List<Author> authors) {
+                for (Author author : authors) {
+                    authorMap.put(author.getId_Author(), author.getName());
+                }
+                Log.d("Autores", "Se cargaron los nombres de los autores correctamente.");
+                getBooks();
+            }
+
+            @Override
+            public void onFailure(String errorMessage) {
+                Log.e("Autores", "Error al obtener autores: " + errorMessage);
+            }
+        });
+    }
+
     private void updateBooksList(List<BookResponse> bookList) {
-        // Create the list of Libro objects for the adapter
-        List<BookResponse> listaLibros = new ArrayList<>();
-        for (BookResponse book : bookList) {
-            listaLibros.add(new BookResponse(book.getId_Book(), book.getTitle(),book.getId_Author(),book.getId_Genre(),book.getId_Editorial(),book.getDescription(),book.getPrice(),book.getPrice(),book.getAvg_rating()));
+        if (bookList == null || bookList.isEmpty()) {
+            Log.w("Home", "No se recibieron libros desde la API");
+            return;
         }
 
-        // Update the RecyclerView adapter with the fetched books
+        Log.d("Home", "Cantidad de libros recibidos: " + bookList.size());
+
         runOnUiThread(() -> {
-            rvDestacados.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-            rvDestacados.setAdapter(new BookAdapter(this, listaLibros));
+            rvDestacados.setAdapter(new BookAdapter(this, bookList, authorMap));
         });
     }
 

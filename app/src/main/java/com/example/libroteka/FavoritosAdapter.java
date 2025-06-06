@@ -10,17 +10,18 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.libroteka.data.FavoriteRequest;
+import com.bumptech.glide.Glide;
+import com.example.libroteka.data.BookResponse;
+
 import java.util.List;
 
 class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.FavoriteViewHolder> {
 
-    private List<FavoriteRequest> favoriteList;
+    private List<BookResponse> favoriteBooks;
     private OnDeleteClickListener onDeleteClickListener;
 
-    // Constructor with delete click listener
-    public FavoritesAdapter(List<FavoriteRequest> favoriteList, OnDeleteClickListener onDeleteClickListener) {
-        this.favoriteList = favoriteList;
+    public FavoritesAdapter(List<BookResponse> favoriteBooks, OnDeleteClickListener onDeleteClickListener) {
+        this.favoriteBooks = favoriteBooks;
         this.onDeleteClickListener = onDeleteClickListener;
     }
 
@@ -31,34 +32,28 @@ class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.FavoriteVie
         return new FavoriteViewHolder(view);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull FavoriteViewHolder holder, int position) {
-        FavoriteRequest favorite = favoriteList.get(position);
+        BookResponse book = favoriteBooks.get(position);
 
-        // Set book image
-        String imageName = "id_" + favorite.getId_book();
         Context context = holder.itemView.getContext();
-        int imageResId = context.getResources().getIdentifier(imageName, "drawable", context.getPackageName());
 
-        if (imageResId != 0) { // Ensure the image resource exists
-            holder.bookImageView.setImageResource(imageResId);
-        }
+        // Load image using Glide from URL
+        Glide.with(context)
+                .load(book.getImage())
+                .into(holder.bookImageView);
 
-        // Handle delete button click
-        holder.deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onDeleteClickListener.onDeleteClick(favorite.getId(), position); // Pass book ID and position
-            }
-        });
+        holder.deleteButton.setOnClickListener(v ->
+                onDeleteClickListener.onDeleteClick(book.getId_Book(), position)
+        );
     }
 
     @Override
     public int getItemCount() {
-        return favoriteList.size();
+        return favoriteBooks.size();
     }
 
-    // ViewHolder class
     public static class FavoriteViewHolder extends RecyclerView.ViewHolder {
         ImageView bookImageView;
         ImageButton deleteButton;
@@ -66,11 +61,10 @@ class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.FavoriteVie
         public FavoriteViewHolder(@NonNull View itemView) {
             super(itemView);
             bookImageView = itemView.findViewById(R.id.bookImageView);
-            deleteButton = itemView.findViewById(R.id.deleteButton); // Reference to delete button
+            deleteButton = itemView.findViewById(R.id.deleteButton);
         }
     }
 
-    // Callback interface to handle delete action
     public interface OnDeleteClickListener {
         void onDeleteClick(int bookId, int position);
     }

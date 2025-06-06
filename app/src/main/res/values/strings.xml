@@ -68,7 +68,7 @@
     <string name="correo">Correo</string>
     <string name="recuperar_contrase_a">Recuperar contraseña</string>
     <string name="categor_as">Categorías</string>
-    <string name="destacados">Destacados</string>
+    <string name="Libros">Libros</string>
     <string name="libroteka">Libroteka</string>
     <string name="logo_libroteka">Logo Libroteka</string>
     <string name="registrar">Registrar</string>
@@ -88,6 +88,7 @@
     <string name="_15_000">$15.000</string>
     <string name="t_tulo_del_libro">Título del Libro</string>
     <string name="eliminar_cuenta">ELIMINAR CUENTA</string>
+    <string name="ordenescompra">Historial de Compra</string>
 
 
 </resources>

@@ -1,5 +1,8 @@
 package com.example.libroteka.data;
 
+import android.content.Context;
+import android.util.Log;
+
 import com.example.libroteka.SessionManager;
 import com.example.libroteka.retrofit.ApiInterface;
 import com.example.libroteka.retrofit.RetrofitClient;
@@ -17,7 +20,9 @@ public class ApiManager {
 
     public ApiManager(SessionManager sessionManager) {
         this.sessionManager = sessionManager;
-        apiInterface = RetrofitClient.getRetrofitInstance(this.sessionManager).create(ApiInterface.class);
+        this.apiInterface = RetrofitClient.getRetrofitInstance(sessionManager).create(ApiInterface.class);
+        // Initialize app using the context from SessionManager
+        this.app = (MyApp) sessionManager.getContext().getApplicationContext();
     }
 
     // Método para refrescar el token
@@ -46,12 +51,13 @@ public class ApiManager {
 
     public void loginUser(LoginRequest loginRequest, final ApiCallback<UserResponse> callback) {
         Call<UserResponse> call = apiInterface.loginUser(loginRequest);
-
         call.enqueue(new Callback<UserResponse>() {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     callback.onSuccess(response.body());
+                    app.setUserEmail(String.valueOf(loginRequest.getEmail()));
+                    app.setUserId(response.body().getUserId());
                 } else {
                     callback.onFailure("Login fallido: " + response.message());
                 }
@@ -103,6 +109,25 @@ public class ApiManager {
             }
         });
     }
+
+    public void getAuthors(ApiCallback<List<Author>> callback) {
+        apiInterface.getAuthors().enqueue(new Callback<List<Author>>() {
+            @Override
+            public void onResponse(Call<List<Author>> call, Response<List<Author>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    callback.onSuccess(response.body());
+                } else {
+                    callback.onFailure("No se pudieron obtener los autores.");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Author>> call, Throwable t) {
+                callback.onFailure(t.getMessage());
+            }
+        });
+    }
+
 
     public void registerUser(RegisterRequest registerRequest, final ApiCallback<RegisterResponse> callback) {
         // Make the call to the register API
@@ -177,7 +202,7 @@ public class ApiManager {
     public void toggleFavorite(String userId, Integer bookId, final ApiCallback<Void> callback) {
         FavoriteRequest favoriteRequest = new FavoriteRequest(userId, bookId);
         Call<Void> call = apiInterface.toggleFavorite(favoriteRequest);
-
+        Log.i("AVER", favoriteRequest.toString());
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -274,7 +299,7 @@ public class ApiManager {
     // Método para obtener el usuario por email
     public void getUserByEmail(String email, final ApiCallback<GetUserResponse> callback) {
         Call<GetUserResponse> call = apiInterface.getUserByEmail(email);
-
+        Log.i("EMAIL en getuserbyemail", email);
         call.enqueue(new Callback<GetUserResponse>() {
             @Override
             public void onResponse(Call<GetUserResponse> call, Response<GetUserResponse> response) {
