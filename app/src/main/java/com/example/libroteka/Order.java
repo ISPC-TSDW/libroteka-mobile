@@ -1,5 +1,6 @@
 package com.example.libroteka;
 
+import com.example.libroteka.data.BookResponse;
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
@@ -7,7 +8,7 @@ public class Order {
     @SerializedName("id_Order")
     private Integer idOrder;
     private String date;
-    private List<Integer> books;
+    private List<BookResponse> books;
     private String total;
     private Integer books_amount;
     private String address;
@@ -20,9 +21,10 @@ public class Order {
     @SerializedName("id_User")
     private String id_User;
 
+
     public Integer getIdOrder() { return idOrder; }
     public String getDate() { return date; }
-    public List<Integer> getBooks() { return books; }
+    public List<BookResponse> getBooks() { return books; }
     public String getTotal() { return total; }
     public Integer getBooks_amount() { return books_amount; }
     public String getAddress() { return address; }
