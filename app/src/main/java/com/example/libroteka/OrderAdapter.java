@@ -56,19 +56,19 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
                     status = "Pendiente";
                     break;
                 case 2:
-                    status = "Procesando";
+                    status = "Pagado";
                     break;
                 case 3:
-                    status = "Enviado";
-                    break;
-                case 4:
-                    status = "Entregado";
-                    break;
-                case 5:
                     status = "Cancelado";
                     break;
+                case 4:
+                    status = "En Preparacion";
+                    break;
+                case 5:
+                    status = "Enviado";
+                    break;
                 default:
-                    status = "Desconocido";
+                    status = "Recibido";
             }
         } else {
             status = "Desconocido";
