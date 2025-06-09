@@ -12,17 +12,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.libroteka.data.BookResponse;
+import com.example.libroteka.data.model.FavoriteBook;
 
 import java.util.List;
 
 class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.FavoriteViewHolder> {
+    private List<FavoriteBook> favoriteBooks;
+    private OnDeleteClickListener deleteClickListener;
 
-    private List<BookResponse> favoriteBooks;
-    private OnDeleteClickListener onDeleteClickListener;
+    public interface OnDeleteClickListener {
+        void onDeleteClick(int favoriteId, int position);
+    }
 
-    public FavoritesAdapter(List<BookResponse> favoriteBooks, OnDeleteClickListener onDeleteClickListener) {
+    public FavoritesAdapter(List<FavoriteBook> favoriteBooks, OnDeleteClickListener listener) {
         this.favoriteBooks = favoriteBooks;
-        this.onDeleteClickListener = onDeleteClickListener;
+        this.deleteClickListener = listener;
     }
 
     @NonNull
@@ -32,26 +36,31 @@ class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.FavoriteVie
         return new FavoriteViewHolder(view);
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull FavoriteViewHolder holder, int position) {
-        BookResponse book = favoriteBooks.get(position);
+        FavoriteBook favoriteBook = favoriteBooks.get(position);
+        BookResponse book = favoriteBook.book;
 
         Context context = holder.itemView.getContext();
 
-        // Load image using Glide from URL
         Glide.with(context)
                 .load(book.getImage())
                 .into(holder.bookImageView);
 
-        holder.deleteButton.setOnClickListener(v ->
-                onDeleteClickListener.onDeleteClick(book.getId_Book(), position)
-        );
+        holder.deleteButton.setOnClickListener(v -> {
+            deleteClickListener.onDeleteClick(favoriteBook.favorite.getId(), position);
+        });
     }
 
     @Override
     public int getItemCount() {
         return favoriteBooks.size();
+    }
+
+    public void removeAt(int position) {
+        favoriteBooks.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, favoriteBooks.size());
     }
 
     public static class FavoriteViewHolder extends RecyclerView.ViewHolder {
@@ -63,9 +72,5 @@ class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.FavoriteVie
             bookImageView = itemView.findViewById(R.id.bookImageView);
             deleteButton = itemView.findViewById(R.id.deleteButton);
         }
-    }
-
-    public interface OnDeleteClickListener {
-        void onDeleteClick(int bookId, int position);
     }
 }
