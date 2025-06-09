@@ -6,14 +6,15 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.libroteka.data.ApiManager;
 import com.example.libroteka.data.BookResponse;
 import com.example.libroteka.data.FavoriteRequest;
 import com.example.libroteka.data.MyApp;
+import com.example.libroteka.data.model.FavoriteBook;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,6 @@ public class FavoritosActivity extends AppCompatActivity implements FavoritesAda
     private FavoritesAdapter adapter;
     private ApiManager apiManager;
     private String userId;
-    private List<BookResponse> favoriteBooks; // Replaces favoritesList
     private SessionManager sessionManager;
 
     @Override
@@ -33,6 +33,7 @@ public class FavoritosActivity extends AppCompatActivity implements FavoritesAda
 
         recyclerViewFavorites = findViewById(R.id.recyclerViewFavorites);
         recyclerViewFavorites.setLayoutManager(new GridLayoutManager(this, 2));
+
         sessionManager = new SessionManager(getApplicationContext());
         apiManager = new ApiManager(sessionManager);
         MyApp app = (MyApp) getApplicationContext();
@@ -104,55 +105,37 @@ public class FavoritosActivity extends AppCompatActivity implements FavoritesAda
     }
 
     private void displayFavorites(List<FavoriteRequest> favorites, List<BookResponse> books) {
-        List<Integer> favoriteBookIds = new ArrayList<>();
-        for (FavoriteRequest fav : favorites) {
-            favoriteBookIds.add(fav.getIdBook());
-        }
+        List<FavoriteBook> combinedList = new ArrayList<>();
 
-        favoriteBooks = new ArrayList<>();
-        for (BookResponse book : books) {
-            if (favoriteBookIds.contains(book.getId())) {
-                favoriteBooks.add(book);
+        for (FavoriteRequest fav : favorites) {
+            for (BookResponse book : books) {
+                if (book.getId() == fav.getIdBook()) {
+                    combinedList.add(new FavoriteBook(fav, book));
+                    break;
+                }
             }
         }
 
-        adapter = new FavoritesAdapter(favoriteBooks, FavoritosActivity.this);
+        adapter = new FavoritesAdapter(combinedList, FavoritosActivity.this);
         recyclerViewFavorites.setAdapter(adapter);
 
-        if (favoriteBooks.isEmpty()) {
+        if (combinedList.isEmpty()) {
             Toast.makeText(FavoritosActivity.this, "No favorites available", Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
-    public void onDeleteClick(int bookId, int position) {
-        apiManager.removeFavorite(bookId, new ApiManager.ApiCallback<Void>() {
+    public void onDeleteClick(int favoriteId, int position) {
+        apiManager.removeFavorite(favoriteId, new ApiManager.ApiCallback<Void>() {
             @Override
             public void onSuccess(Void result) {
-                removeBookAt(position);
+                adapter.removeAt(position);
                 Toast.makeText(FavoritosActivity.this, "Favorito eliminado", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(String errorMessage) {
-                if (errorMessage.contains("404")) {
-                    Toast.makeText(FavoritosActivity.this, "Favorito no encontrado", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(FavoritosActivity.this, "Error eliminando favorito", Toast.LENGTH_SHORT).show();
-                }
-                removeBookAt(position); // still remove locally
-            }
-
-            private void removeBookAt(int position) {
-                if (favoriteBooks != null && position >= 0 && position < favoriteBooks.size()) {
-                    favoriteBooks.remove(position);
-                    adapter.notifyItemRemoved(position);
-                    adapter.notifyItemRangeChanged(position, favoriteBooks.size());
-
-                    if (favoriteBooks.isEmpty()) {
-                        Toast.makeText(FavoritosActivity.this, "No more favorites", Toast.LENGTH_SHORT).show();
-                    }
-                }
+                Toast.makeText(FavoritosActivity.this, "Error eliminando favorito", Toast.LENGTH_SHORT).show();
             }
         });
     }
