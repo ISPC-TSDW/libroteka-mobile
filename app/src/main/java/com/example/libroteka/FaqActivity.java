@@ -41,8 +41,8 @@ public class FaqActivity extends AppCompatActivity {
 
     // Método para navegar a Home
     private void goToHome() {
-        //Intent intent = new Intent(FaqActivity.this, Home.class);
-        //startActivity(intent);
+        Intent intent = new Intent(FaqActivity.this, Home.class);
+        startActivity(intent);
     }
 
     // Método para navegar a la pantalla de categorías
@@ -53,6 +53,8 @@ public class FaqActivity extends AppCompatActivity {
 
     // Método para navegar a la pantalla de favoritos (agregar cuando esté lista)
     private void goToFavorites() {
+        Intent intent = new Intent(FaqActivity.this, FaqActivity.class);
+        startActivity(intent);
         // Agregar cuando esté lista la pantalla de favoritos
     }
 }

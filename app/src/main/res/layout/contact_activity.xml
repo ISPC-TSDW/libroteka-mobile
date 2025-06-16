@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/marble">
+    android:background="@color/white">
 
 
     <TextView
@@ -37,70 +36,69 @@
         app:layout_constraintVertical_bias="0.1" />
 
     <EditText
-        android:autofillHints="name"
         android:id="@+id/et_name"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
+        android:autofillHints="name"
+        android:background="@drawable/formtext"
         android:ems="10"
         android:fontFamily="@font/roboto"
         android:gravity="center|start"
         android:hint="@string/tu_nombre"
-        android:padding="16dp"
-        android:textSize="15sp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
         android:inputType="textPersonName"
+        android:padding="16dp"
+        android:textColorHint="@color/white"
+        android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_contacto"
-        app:layout_constraintWidth_percent="0.8"
-        android:background="@drawable/formtext"/>
+        app:layout_constraintWidth_percent="0.8" />
 
     <EditText
-        android:autofillHints="emailAddress"
         android:id="@+id/emailText"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:autofillHints="emailAddress"
+        android:background="@drawable/formtext"
+        android:ems="10"
+        android:fontFamily="@font/roboto"
         android:hint="@string/ingresa_un_correo"
         android:inputType="textEmailAddress"
         android:padding="16dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         android:textSize="15sp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:fontFamily="@font/roboto"
-        android:ems="10"
-        android:layout_margin="20dp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/et_name"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_percent="0.8"
-        android:background="@drawable/formtext"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_name"
+        app:layout_constraintWidth_percent="0.8" />
 
     <EditText
-        android:autofillHints="description"
         android:id="@+id/descriptionText"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:autofillHints="description"
+        android:background="@drawable/formtext"
         android:gravity="top|start"
         android:hint="@string/ingresa_un_mensaje"
         android:inputType="textMultiLine"
-        android:padding="16dp"
-        android:textSize="15sp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
         android:maxLines="10"
         android:minLines="4"
+        android:padding="16dp"
         android:scrollbars="vertical"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="20sp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toTopOf="@+id/submitButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailText"
-        app:layout_constraintWidth_percent="0.8"
-        android:background="@drawable/formtext"/>
+        app:layout_constraintWidth_percent="0.8" />
 
     <Button
         android:id="@+id/submitButton"
@@ -120,8 +118,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="80dp"
         android:background="@drawable/button_rounded"
-        android:text="@string/volver"
         android:onClick="goBackToProfile"
+        android:text="@string/volver"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

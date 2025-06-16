@@ -44,6 +44,7 @@
         app:itemIconTint="@color/greyviolet"
         app:itemTextColor="@color/greyviolet"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/menu_navigation" />
+        app:menu="@menu/menu_navigation"
+        tools:layout_editor_absoluteX="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
