@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FaqActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,12 +26,17 @@ public class FaqActivity extends AppCompatActivity {
 
         // Preguntas frecuentes
         List<FaqItem> faqList = new ArrayList<>();
-        faqList.add(new FaqItem("¿Cómo puedo buscar un libro?", "Puedes buscar un libro desde la barra de búsqueda o filtrando por categorías..."));
-        faqList.add(new FaqItem("¿Cómo puedo agregar un libro a mi lista de favoritos?", "Para agregar un libro a tu lista de favoritos, simplemente haz clic en el ícono de corazón que aparece junto al título del libro. Este se añadirá automáticamente a tu lista de favoritos dentro de tu perfil."));
-        faqList.add(new FaqItem("¿Puedo leer libros sin conexión a internet?", "Sí, puedes descargar libros para leerlos sin conexión. Simplemente selecciona la opción de descarga en el libro que quieras leer y estará disponible en tu dispositivo para acceso sin conexión."));
-        faqList.add(new FaqItem("¿Cómo puedo compartir un libro con mis amigos?", "Para compartir un libro, selecciona el ícono de compartir dentro de la página del libro. Podrás enviarlo a tus amigos a través de redes sociales, correo electrónico o cualquier otra aplicación de mensajería compatible."));
-        faqList.add(new FaqItem("¿Cómo puedo dejar una reseña de un libro que he leído?", "Después de haber leído un libro, ve a la sección de comentarios y selecciona la opción 'Dejar una reseña'. Allí podrás calificar el libro y escribir tus pensamientos sobre él."));
-        faqList.add(new FaqItem("¿Qué hago si no encuentro un libro en la búsqueda?", "Si no puedes encontrar un libro, asegúrate de que estás utilizando las palabras clave correctas. También puedes probar filtrando por categorías o autor. Si aún no lo encuentras, es posible que el libro no esté disponible en nuestra biblioteca."));
+        faqList.add(new FaqItem("¿Cómo puedo buscar un libro?", "Puedes buscar un libro desde la barra de búsqueda o filtrando por categorías."));
+        faqList.add(new FaqItem("¿Cómo agrego un libro a favoritos?", "Haz clic en el ícono de corazón junto al libro para agregarlo a tu lista de favoritos."));
+        faqList.add(new FaqItem("¿Cómo recupero mi contraseña?", "En la pantalla de inicio de sesión, selecciona '¿Olvidaste tu contraseña?' y sigue los pasos."));
+        faqList.add(new FaqItem("¿Cómo contacto al soporte?", "Desde tu perfil, selecciona 'Contacto' y completa el formulario para comunicarte con nuestro equipo."));
+        faqList.add(new FaqItem("¿Cómo compro un libro?", "Selecciona el libro que deseas y haz clic en 'Comprar'. Serás redirigido a la web para seguir los pasos para completar el pago."));
+        faqList.add(new FaqItem("¿Qué métodos de pago aceptan?", "Aceptamos tarjetas de crédito, débito y Mercado Pago."));
+        faqList.add(new FaqItem("¿Cómo veo mi historial de compras?", "En tu perfil, selecciona 'Historial de compras' para ver todas tus compras realizadas."));
+        faqList.add(new FaqItem("¿Cómo edito mi perfil?", "En tu perfil, haz clic en 'Editar perfil' para modificar tus datos personales."));
+        faqList.add(new FaqItem("¿Cómo elimino mi cuenta?", "Contáctanos a través del formulario de contacto para solicitar la eliminación de tu cuenta o bien en editar perfil hay una opción para eliminar tu cuenta."));
+        faqList.add(new FaqItem("¿Por qué no encuentro un libro?", "Puede que el libro no esté disponible aún. Intenta buscar por título, autor o categoría."));
+        faqList.add(new FaqItem("¿Qué hago si la app no funciona bien?", "Intenta cerrar y volver a abrir la app. Si el problema persiste, contacta a soporte."));
 
         // Configura el adaptador
         FaqAdapter faqAdapter = new FaqAdapter(faqList);

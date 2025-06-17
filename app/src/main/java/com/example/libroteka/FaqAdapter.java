@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class FaqAdapter extends RecyclerView.Adapter<FaqAdapter.FaqViewHolder> {
-
     private List<FaqItem> faqList;
+    private int expandedPosition = -1; // Solo una expandida a la vez
 
     public FaqAdapter(List<FaqItem> faqList) {
         this.faqList = faqList;
@@ -19,15 +19,28 @@ public class FaqAdapter extends RecyclerView.Adapter<FaqAdapter.FaqViewHolder> {
     @NonNull
     @Override
     public FaqViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.faq_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext())
+            .inflate(R.layout.item_faq, parent, false);
         return new FaqViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull FaqViewHolder holder, int position) {
-        FaqItem faqItem = faqList.get(position);
-        holder.questionTextView.setText(faqItem.getQuestion());
-        holder.answerTextView.setText(faqItem.getAnswer());
+        FaqItem faq = faqList.get(position);
+        holder.questionTextView.setText(faq.getQuestion());
+        holder.answerTextView.setText(faq.getAnswer());
+
+        final boolean isExpanded = position == expandedPosition;
+        holder.answerTextView.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
+
+        holder.itemView.setOnClickListener(v -> {
+            if (expandedPosition == position) {
+                expandedPosition = -1;
+            } else {
+                expandedPosition = position;
+            }
+            notifyDataSetChanged();
+        });
     }
 
     @Override
@@ -35,16 +48,13 @@ public class FaqAdapter extends RecyclerView.Adapter<FaqAdapter.FaqViewHolder> {
         return faqList.size();
     }
 
-    public static class FaqViewHolder extends RecyclerView.ViewHolder {
-        TextView questionTextView;
-        TextView answerTextView;
+    static class FaqViewHolder extends RecyclerView.ViewHolder {
+        TextView questionTextView, answerTextView;
 
-        public FaqViewHolder(@NonNull View itemView) {
+        FaqViewHolder(View itemView) {
             super(itemView);
             questionTextView = itemView.findViewById(R.id.questionTextView);
             answerTextView = itemView.findViewById(R.id.answerTextView);
         }
     }
-
-
 }
