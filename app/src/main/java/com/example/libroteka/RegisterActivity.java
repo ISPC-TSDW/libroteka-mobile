@@ -7,9 +7,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.text.InputType;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +30,11 @@ public class RegisterActivity extends AppCompatActivity {
     private ApiManager apiManager;
     private SessionManager sessionManager;
 
+    private EditText etContrasena, etConfirmarContrasena;
+    private ImageButton btnTogglePassword, btnToggleConfirmPassword;
+    private boolean isPasswordVisible = false;
+    private boolean isConfirmPasswordVisible = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,9 +47,36 @@ public class RegisterActivity extends AppCompatActivity {
         EditText etApellido = findViewById(R.id.etApellido);
         EditText etNombre = findViewById(R.id.etNombre);
         EditText etCorreo = findViewById(R.id.etCorreo);
-        EditText etContrasena = findViewById(R.id.etContrasena);
+        etContrasena = findViewById(R.id.etContrasena);
+        etConfirmarContrasena = findViewById(R.id.etConfirmarContrasena);
         Button btnRegistrar = findViewById(R.id.btnRegistrar);
         TextView tvIniciarSesion = findViewById(R.id.tvIniciarSesion);
+        btnTogglePassword = findViewById(R.id.btn_toggle_password);
+        btnToggleConfirmPassword = findViewById(R.id.btn_toggle_confirm_password);
+
+        btnTogglePassword.setOnClickListener(v -> {
+            if (isPasswordVisible) {
+                etContrasena.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                btnTogglePassword.setImageResource(R.drawable.ic_visibility_off);
+            } else {
+                etContrasena.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                btnTogglePassword.setImageResource(R.drawable.ic_visibility);
+            }
+            isPasswordVisible = !isPasswordVisible;
+            etContrasena.setSelection(etContrasena.getText().length());
+        });
+
+        btnToggleConfirmPassword.setOnClickListener(v -> {
+            if (isConfirmPasswordVisible) {
+                etConfirmarContrasena.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                btnToggleConfirmPassword.setImageResource(R.drawable.ic_visibility_off);
+            } else {
+                etConfirmarContrasena.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                btnToggleConfirmPassword.setImageResource(R.drawable.ic_visibility);
+            }
+            isConfirmPasswordVisible = !isConfirmPasswordVisible;
+            etConfirmarContrasena.setSelection(etConfirmarContrasena.getText().length());
+        });
 
         // Configuramos el botón de registro
         btnRegistrar.setOnClickListener(v -> {
@@ -52,27 +86,28 @@ public class RegisterActivity extends AppCompatActivity {
             Integer dni = Integer.parseInt(etDni.getText().toString().trim());    // Convertir el String a Integer
             String correo = etCorreo.getText().toString().trim();
             String contrasena = etContrasena.getText().toString().trim();
+            String confirmarContrasena = etConfirmarContrasena.getText().toString().trim();
 
             // Validamos los campos
-            if (nombre.isEmpty() || correo.isEmpty() || contrasena.isEmpty()) {
-                Toast.makeText(RegisterActivity.this, "Por favor complete todos los campos", Toast.LENGTH_SHORT).show();
+            if (nombre.isEmpty() || apellido.isEmpty() || dni == null || correo.isEmpty() || contrasena.isEmpty()) {
+                Toast.makeText(this, "Por favor complete todos los campos", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             // Validar que el nombre no contenga caracteres especiales o números
             if (!nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+")) {
-                Toast.makeText(RegisterActivity.this, "El nombre no debe contener números o caracteres especiales", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "El nombre no debe contener números o caracteres especiales", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             // Validar formato correo electrónico
             if (!android.util.Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
-                Toast.makeText(RegisterActivity.this, "Por favor, ingrese un correo electrónico válido", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Por favor, ingrese un correo electrónico válido", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             // Validar que el correo tenga un dominio como "gmail.com", "hotmail.com", etc.
-            String[] validDomains = {"gmail.com", "hotmail.com", "yahoo.com", "outlook.com"};
+            String[] validDomains = {"gmail.com", "hotmail.com", "yahoo.com", "outlook.com","libroteka.com"};
             String domain = correo.substring(correo.indexOf("@") + 1);
             boolean isDomainValid = false;
             for (String validDomain : validDomains) {
@@ -83,7 +118,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
             if (!isDomainValid) {
-                Toast.makeText(RegisterActivity.this, "Por favor, usa un dominio de correo electrónico válido (ej. gmail.com, hotmail.com)", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Por favor, usa un dominio de correo electrónico válido (ej. gmail.com, hotmail.com)", Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -92,7 +127,12 @@ public class RegisterActivity extends AppCompatActivity {
                 return;
             };
 
-            // Aquí enviamos los datos a una base de datos o backend
+            if (!contrasena.equals(confirmarContrasena)) {
+                Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // enviamos los datos al backend
             RegisterRequest registerRequest = new RegisterRequest(usuario, nombre, apellido, dni, contrasena, correo);
 
             apiManager.registerUser(registerRequest, new ApiManager.ApiCallback<RegisterResponse>() {
