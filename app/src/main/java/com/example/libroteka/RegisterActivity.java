@@ -132,7 +132,7 @@ public class RegisterActivity extends AppCompatActivity {
                 return;
             }
 
-            // Aquí enviamos los datos al backend
+            // enviamos los datos al backend
             RegisterRequest registerRequest = new RegisterRequest(usuario, nombre, apellido, dni, contrasena, correo);
 
             apiManager.registerUser(registerRequest, new ApiManager.ApiCallback<RegisterResponse>() {

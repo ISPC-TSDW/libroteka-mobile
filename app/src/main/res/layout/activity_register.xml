@@ -102,7 +102,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Contraseña (con ojito alineado dentro del campo) -->
+    <!-- Contraseña -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/contrasenaContainer"
         android:layout_width="0dp"
@@ -144,7 +144,7 @@
             app:layout_constraintBottom_toBottomOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- Confirmar contraseña (con ojito alineado dentro del campo) -->
+    <!-- Confirmar contraseña -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/confirmContrasenaContainer"
         android:layout_width="0dp"
